@@ -67,10 +67,9 @@ Function JumpModule() {
 		$line = Get-Content $filePath | Where-Object { $_ -match "^$nickname " }
 
 		if ($line) {
-			# If the nickname exists, extract the ID and run the SSH command
+			# If the nickname exists, extract the ID and run the SSM command
 			$id = $line.Split(' ')[1]
 			aws ssm start-session --profile default --target $id
-			#ssh "ubuntu@$id"
 		}
 		else {
 			# If the nickname doesn't exist, print an error message
